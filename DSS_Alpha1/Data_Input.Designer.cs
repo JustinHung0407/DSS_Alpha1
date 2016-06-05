@@ -1,6 +1,6 @@
 ﻿namespace DSS_Alpha1
 {
-    partial class DataInput
+    partial class Data_Input
     {
         /// <summary>
         /// Required designer variable.
@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.Sub_List = new System.Windows.Forms.ListBox();
+            this.List = new System.Windows.Forms.ListBox();
             this.Sem_Box = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
@@ -67,15 +67,15 @@
             this.groupBox3.SuspendLayout();
             this.SuspendLayout();
             // 
-            // Sub_List
+            // List
             // 
-            this.Sub_List.FormattingEnabled = true;
-            this.Sub_List.ItemHeight = 12;
-            this.Sub_List.Location = new System.Drawing.Point(304, 62);
-            this.Sub_List.Name = "Sub_List";
-            this.Sub_List.Size = new System.Drawing.Size(148, 88);
-            this.Sub_List.TabIndex = 0;
-            this.Sub_List.SelectedIndexChanged += new System.EventHandler(this.Sub_List_SelectedIndexChanged);
+            this.List.FormattingEnabled = true;
+            this.List.ItemHeight = 12;
+            this.List.Location = new System.Drawing.Point(304, 62);
+            this.List.Name = "List";
+            this.List.Size = new System.Drawing.Size(148, 88);
+            this.List.TabIndex = 0;
+            this.List.SelectedIndexChanged += new System.EventHandler(this.List_SelectedIndexChanged);
             // 
             // Sem_Box
             // 
@@ -84,7 +84,6 @@
             this.Sem_Box.Name = "Sem_Box";
             this.Sem_Box.Size = new System.Drawing.Size(121, 20);
             this.Sem_Box.TabIndex = 1;
-            this.Sem_Box.SelectedIndexChanged += new System.EventHandler(this.Sem_Box_SelectedIndexChanged);
             // 
             // label1
             // 
@@ -109,7 +108,7 @@
             this.groupBox1.Controls.Add(this.label1);
             this.groupBox1.Controls.Add(this.Sem_Box);
             this.groupBox1.Controls.Add(this.label2);
-            this.groupBox1.Controls.Add(this.Sub_List);
+            this.groupBox1.Controls.Add(this.List);
             this.groupBox1.Location = new System.Drawing.Point(12, 12);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(476, 182);
@@ -368,7 +367,7 @@
             this.button1.TabIndex = 11;
             this.button1.Text = "重新整理";
             this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.Reflash_Button);
+            this.button1.Click += new System.EventHandler(this.Reflash);
             // 
             // button2
             // 
@@ -390,7 +389,7 @@
             this.button3.UseVisualStyleBackColor = true;
             this.button3.Click += new System.EventHandler(this.Abort);
             // 
-            // DataInput
+            // Data_Input
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -401,10 +400,7 @@
             this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
-            this.Name = "DataInput";
-            this.ShowIcon = false;
-            this.ShowInTaskbar = false;
+            this.Name = "Data_Input";
             this.Text = "輸入";
             this.Load += new System.EventHandler(this.DataInput_Load);
             this.groupBox1.ResumeLayout(false);
@@ -419,7 +415,7 @@
 
         #endregion
 
-        private System.Windows.Forms.ListBox Sub_List;
+        private System.Windows.Forms.ListBox List;
         private System.Windows.Forms.ComboBox Sem_Box;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;

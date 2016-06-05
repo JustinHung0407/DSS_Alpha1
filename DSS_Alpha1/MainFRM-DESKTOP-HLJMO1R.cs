@@ -7,12 +7,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.IO;
+using System.Data.SQLite;
 
 namespace DSS_Alpha1
 {
-    public partial class Form1 : Form
+    public partial class MainFrame : Form
     {
-        public Form1()
+        public MainFrame()
         {
             InitializeComponent();
         }
@@ -25,8 +27,23 @@ namespace DSS_Alpha1
         //資料鍵入畫面
         private void button1_Click(object sender, EventArgs e)
         {
-            DataInput frm = new DataInput();
-            frm.ShowDialog();
+            if (!File.Exists("Data.db"))
+            {
+                MessageBox.Show("Setup Initial Setting First","Warning",MessageBoxButtons.OK,MessageBoxIcon.Error);
+            }
+            else
+            {
+                /*try
+                {*/
+                    Data_Input frm = new Data_Input();
+                    frm.ShowDialog();
+                //}
+                /*catch(Exception)
+                {
+                    MessageBox.Show("Setup Initial Setting First OR DataBase Damage","Warning");*/
+                /*}*/
+            }
+            
         }
         //關於畫面
         private void 關於ToolStripMenuItem_Click(object sender, EventArgs e)
@@ -46,6 +63,17 @@ namespace DSS_Alpha1
         {
             Subject_Input subFrm = new Subject_Input();
             subFrm.ShowDialog();
+        }
+
+        private void dATABASECONNECTIONTESTToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
+        //semester setting
+        private void Menu_Senester_Click(object sender, EventArgs e)
+        {
+            Semester_Input Sem_FRM = new Semester_Input();
+            Sem_FRM.ShowDialog();
         }
     }
 }

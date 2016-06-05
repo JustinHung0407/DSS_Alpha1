@@ -82,9 +82,7 @@
             this.Controls.Add(this.Delete_Item);
             this.Controls.Add(this.New_Item);
             this.Controls.Add(this.Sub_List);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Name = "Subject_Input";
-            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "科目";
             this.Load += new System.EventHandler(this.Subject_Input_Load);
             this.ResumeLayout(false);

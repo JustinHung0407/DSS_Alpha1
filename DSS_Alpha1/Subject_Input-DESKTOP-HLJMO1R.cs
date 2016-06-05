@@ -1,8 +1,15 @@
 ﻿using System;
 using System.IO;
+using System.Collections.Generic;
+using System.ComponentModel;
 using System.Data;
+using System.Drawing;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Data.SQLite;
+using System.IO;
 
 namespace DSS_Alpha1
 {
@@ -16,9 +23,14 @@ namespace DSS_Alpha1
             /*
             if (Sub_List.SelectedIndex == -1)
                 Delete_Item.Enabled = false;*/
+
+            
         }
+
         
-        //add new subject to DB
+
+
+        //add item
         private void New_Item_Click(object sender, EventArgs e)
         {
             
@@ -39,7 +51,14 @@ namespace DSS_Alpha1
             }
         }
 
-        //delete subject from DB
+        //save & exit
+        private void Exit_Diag_Click(object sender, EventArgs e)
+        {
+            Sync_Box();
+            Close();
+        }
+
+        //delete
         private void Delete_Item_Click(object sender, EventArgs e)
         {
             try
@@ -59,30 +78,6 @@ namespace DSS_Alpha1
             {
                 MessageBox.Show("Unless to choose an item or No item selected", "NullReferenceException",MessageBoxButtons.OK,MessageBoxIcon.Asterisk);
             }
-        }
-        
-        //save data to DB & exit
-        private void Exit_Diag_Click(object sender, EventArgs e)
-        {
-            Sync_Box();
-            Close();
-        }
-
-        //載入科目頁面
-        //確認DB存在
-        private void Subject_Input_Load(object sender, EventArgs e)
-        {
-            CreateDB();
-            if (!TableExists("SubjectData", db_Conn))
-            {
-                string sql = "CREATE TABLE SubjectData (Subject text);";
-                DB_Command(sql);
-            }
-            Sync_Box();
-            /*string chk = "SELECT * FROM SubjectData;";
-            SQLiteCommand cmd = new SQLiteCommand(chk,db_Conn);
-            if ()
-            Sync_Box();*/
         }
 
         /********************************************************/
@@ -125,7 +120,7 @@ namespace DSS_Alpha1
         public void DB_Command(string SQL_CMD_LINE)
         {
 
-            //TRANSACTION WORK IN PROGRESS //CANT WORK NOW , TOO MANY EXCEPTIONS
+            //TRANSACTION WORK IN PROGRESS //CANT WORK NOW , TOO MANY EXPECTIONS
             //
             /************************************************************************
             * //SQLiteCommand("Command_Line", "Spicific_DB_Connection")
@@ -164,7 +159,6 @@ namespace DSS_Alpha1
         }
 
         //sync to listbox
-        //重新整理科目選單裡的Listbox
         public void Sync_Box()
         {
             Sub_List.Items.Clear();//clean !IMPORTANT
@@ -184,14 +178,14 @@ namespace DSS_Alpha1
             DEL_NULL_DT();
         }
 
-        //DEL NULL DATA from DB
+        //DEL NULL DATA
         public void DEL_NULL_DT()
         {
             DB_Command("DELETE FROM SubjectData WHERE Subject IS NULL;");
             DB_Command("DELETE FROM SubjectData WHERE Subject =\"\" ;");
         }
 
-        // Checks the database to see if the table is exists
+        // Checks the database to see if the table exists
         public bool TableExists(string tableName, SQLiteConnection connection)
         {
             using (SQLiteCommand cmd = new SQLiteCommand())
@@ -206,8 +200,28 @@ namespace DSS_Alpha1
                     return true;
             }
         }
+
+        private void Subject_Input_Load(object sender, EventArgs e)
+        {
+            CreateDB();
+            if (!TableExists("SubjectData", db_Conn))
+            {
+                string sql = "CREATE TABLE SubjectData (Subject text);";
+                DB_Command(sql);
+            }
+            Sync_Box();
+            /*string chk = "SELECT * FROM SubjectData;";
+            SQLiteCommand cmd = new SQLiteCommand(chk,db_Conn);
+            if ()
+            Sync_Box();*/
+        }
+
         /********************************************************/
         /*                S Q L  Code END                       */
         /********************************************************/
+
+
+
+
     }
 }
